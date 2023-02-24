@@ -1,20 +1,30 @@
 <!DOCTYPE html>
+
 <head>
   <title>OpenAI Quickstart</title>
-  <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='dog.png') }}"
-  />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='dog.png') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
-  <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
-    <input type="submit" value="Generate names" />
+  <!-- <img src="{{ url_for('static', filename='dog.png') }}" class="icon" /> -->
+  <h3>Insert link to a news article:</h3>
+  {% if not article_url and not result %}
+  <form action="/" method="get">
+    <input type="text" name="article" placeholder="Enter a news article" required />
+    <input type="submit" value="Submit" />
   </form>
+  {% endif %}
+
+  {% if article_url or result %}
+  <div class="news_result">
+    <p>Now ask any question about the article.</p>
+    <form action="/" method="post">
+      <input type="text" name="question" placeholder="Enter your question" required />
+      <input type="submit" value="Get interpretation" />
+    </form>
+  </div>
+  {% endif %}
   {% if result %}
   <div class="result">{{ result }}</div>
   {% endif %}
