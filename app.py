@@ -47,6 +47,8 @@ def generate_prompt(article_text, question):
     return """You will be given the text for a news article, and your task is to answer a question about the article.
 Be mindful that the text was obtained through web scraping, 
 so there will probably be some cluttered information at the beginning and at the end of the text.
+If the question is unrelated to the article, answer "Question unrelated to the article."
+
 
 Here is the scraped article:
 
